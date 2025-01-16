@@ -8,7 +8,7 @@ GENES = '''абвгдеёжзийклмнопрстуфхцчшщыьъэюяА�
         1234567890, .-;:_!"#%&/()=?@${[]}'''
 
 # Целевая строка для генерации
-TARGET = "В начале было слово и слово было бог!"
+TARGET = "В начале было слово"
 
 
 class Individual(object):
@@ -21,7 +21,7 @@ class Individual(object):
         self.fitness = self.cal_fitness()
 
     @classmethod
-    def mutated_genes(self):
+    def mutated_genes(cls):
         """
         Создаем случайные гены для мутации
         """
@@ -30,13 +30,13 @@ class Individual(object):
         return gene
 
     @classmethod
-    def create_gnome(self):
+    def create_gnome(cls):
         """
         Создаем хромосому или набор генов
         """
         global TARGET
         gnome_len = len(TARGET)
-        return [self.mutated_genes() for _ in range(gnome_len)]
+        return [cls.mutated_genes() for _ in range(gnome_len)]
 
     def gene_transfer(self, par2):
         """
@@ -75,7 +75,8 @@ class Individual(object):
         global TARGET
         fitness = 0
         for gs, gt in zip(self.chromosome, TARGET):
-            if gs != gt: fitness += 1
+            if gs != gt:
+                fitness += 1
         return fitness
 
 
