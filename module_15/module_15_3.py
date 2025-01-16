@@ -7,8 +7,10 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
 # Загрузка данных MNIST
-mnist = fetch_openml('mnist_784', version=1)
-X, y = mnist.data / 255.0, mnist.target.astype(int)
+
+# mnist = fetch_openml('mnist_784', version=1)
+with open('mnist_784.csv', 'r', encoding='utf-8') as mnist:
+    X, y = mnist.data / 255.0, mnist.target.astype(int)
 
 # Разделение данных на обучающую и тестовую выборки
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
