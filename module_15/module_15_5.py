@@ -24,7 +24,7 @@ print(f'Точность модели: {accuracy:.2f}')
 
 # Визуализация нескольких примеров
 plt.figure(figsize=(12, 3))
-for index in range(10):
+for index in range(9):
     plt.subplot(1, 10, index + 1)
     plt.imshow(X_test[index].reshape((8, 8)), cmap="Grays")
     plt.title(f'Число:\n {y_pred[index]}')
